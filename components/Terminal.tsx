@@ -124,20 +124,20 @@ const Terminal: React.FC = () => {
       <div className="text-md font-mono mb-4">
         <div className="text-white">{"> "}hello...</div>
         <div className="text-lime-500">
-          <div> - type 'hi' to know your animal</div>
+          <div> {`- type 'hi' to know your animal`}</div>
           <div>
             {" "}
-            - type 'about' to know more about me, use -r flag to get the resume
-            link
+            {`- type 'about' to know more about me, use -r flag to get the resume
+            link`}
           </div>
           <div>
             {" "}
-            - type 'xp' to know about my experience, use -t flag to diplay
+            {`- type 'xp' to know about my experience, use -t flag to diplay`}
             toolkit
           </div>
-          <div> - type 'works' to know about my past works</div>
-          <div> - type 'clear' to clear the terminal</div>
-          <div> - Use the up arrow key ( ^ ) to load previous cmd</div>
+          <div> {`- type 'works' to know about my past works`}</div>
+          <div> {`- type 'clear' to clear the terminal`}</div>
+          <div> {`- Use the up arrow key ( ^ ) to load previous cmd`}</div>
         </div>
       </div>
 
