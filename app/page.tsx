@@ -18,7 +18,7 @@ export default function Home() {
             />
           </div>
           <h1 className="lg:text-8xl sm:text-4xl md:text-6xl text-4xl font-acorn">
-            <span>Hi. I'm Sudarshan.</span> <br />
+            <span>{`Hi. I'm Sudarshan.`}</span> <br />
             <span>A Developer.</span>
           </h1>
           <div className="hidden lg:block relative">
