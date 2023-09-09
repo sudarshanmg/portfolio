@@ -132,8 +132,7 @@ const Terminal: React.FC = () => {
           </div>
           <div>
             {" "}
-            {`- type 'xp' to know about my experience, use -t flag to diplay`}
-            toolkit
+            {`- type 'xp' to know about my experience, use -t flag to diplay toolkit`}
           </div>
           <div> {`- type 'works' to know about my past works`}</div>
           <div> {`- type 'clear' to clear the terminal`}</div>
