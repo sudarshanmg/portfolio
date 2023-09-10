@@ -32,9 +32,7 @@ const Notes = () => {
             {posts.map((post, index) => (
               <GridItem key={index}>
                 <h1 className="font-acorn text-4xl text-neutral-700">
-                  <span className="font-mono">{`&quot;`}</span> {post.note}
-                  {`&quot; &quot;`}
-                  <span className="font-mono">{`&quot;`}</span>
+                  {post.note}
                 </h1>
                 <span className="font-playfair text-black">
                   - {post.username}
