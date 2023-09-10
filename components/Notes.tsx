@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import GridContainer from "./GridContainer";
 import GridItem from "./GridItem";
 
+export const revalidate = 0;
+
 const Notes = () => {
   const [posts, setPosts] = useState<
     | {
