@@ -1,6 +1,7 @@
 "use client";
 import { useRef, FormEvent } from "react";
 import Notes from "@/components/Notes";
+import { supabaseClient } from "@/supabase/supabaseClient";
 
 export default function Wall() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
@@ -8,18 +9,19 @@ export default function Wall() {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await fetch("/api/add-note/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: usernameRef?.current?.value,
-        note: noteRef?.current?.value,
-      }),
-    }).then(() => {
+    const { data, error } = await supabaseClient
+      .from("notes")
+      .insert([
+        {
+          username: usernameRef?.current?.value,
+          note: noteRef?.current?.value,
+        },
+      ])
+      .select();
+
+    if (data) {
       window.location.reload();
-    });
+    }
   };
 
   return (

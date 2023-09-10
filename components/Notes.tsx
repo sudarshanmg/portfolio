@@ -1,10 +1,10 @@
 "use client";
 
+export const revalidate = 0;
 import { useState, useEffect, useCallback } from "react";
 import GridContainer from "./GridContainer";
 import GridItem from "./GridItem";
-
-export const revalidate = 0;
+import { supabaseClient } from "@/supabase/supabaseClient";
 
 const Notes = () => {
   const [posts, setPosts] = useState<
@@ -17,11 +17,10 @@ const Notes = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("/api/fetch-notes", {
-        method: "GET",
-      });
-      const data = await response.json();
-      setPosts(data.notes.rows);
+      let { data: notes, error } = await supabaseClient
+        .from("notes")
+        .select("*");
+      setPosts(notes);
     };
     fetchPosts();
   }, []);
