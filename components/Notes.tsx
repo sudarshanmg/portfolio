@@ -24,7 +24,7 @@ const Notes = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return (
     <div className="w-full h-full flex flex-col items-center my-8">

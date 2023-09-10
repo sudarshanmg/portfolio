@@ -1,12 +1,10 @@
 "use client";
-import { Ref, useRef, FormEvent } from "react";
+import { useRef, FormEvent } from "react";
 import Notes from "@/components/Notes";
-import { useRouter } from "next/navigation";
 
 export default function Wall() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const noteRef = useRef<HTMLInputElement | null>(null);
-  const router = useRouter();
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
