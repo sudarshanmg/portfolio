@@ -13,29 +13,28 @@ const Notes = () => {
     | null
   >(null);
 
-  const fetchPosts = async () => {
-    const response = await fetch("/api/fetch-notes", {
-      method: "GET",
-    });
-    const data = await response.json();
-    setPosts(data.notes.rows);
-    console.log(posts);
-  };
-
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("/api/fetch-notes", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setPosts(data.notes.rows);
+    };
     fetchPosts();
-  }, [fetchPosts]);
+  }, []);
 
   return (
     <div className="w-full h-full flex flex-col items-center my-8">
       {posts && (
-        <div className="w-full h-full flex flex-col items-center">
+        <div className="w-full h-full">
           <GridContainer>
             {posts.map((post, index) => (
               <GridItem key={index}>
                 <h1 className="font-acorn text-4xl text-neutral-700">
-                  <span className="font-mono">"</span> {post.note}{" "}
-                  <span className="font-mono">"</span>
+                  <span className="font-mono">{`&quot;`}</span> {post.note}
+                  {`&quot; &quot;`}
+                  <span className="font-mono">{`&quot;`}</span>
                 </h1>
                 <span className="font-playfair text-black">
                   - {post.username}
