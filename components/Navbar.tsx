@@ -38,8 +38,8 @@ const Navbar = () => {
       active: pathname === "/projects",
     },
     {
-      title: "Contact",
-      href: "/contact",
+      title: "Wall",
+      href: "/wall",
       active: pathname === "/contact",
     },
   ];

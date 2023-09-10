@@ -13,6 +13,7 @@ import clsx from "clsx";
 import Link from "next/link";
 const Terminal: React.FC = () => {
   const [input, setInput] = useState<string>("");
+  const [showHelp, setShowHelp] = useState(true);
   const [res, setRes] = useState<ReactNode[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [prevInput, setprevInput] = useState<string>(input);
@@ -64,7 +65,14 @@ const Terminal: React.FC = () => {
         break;
       case "clear":
         result = "";
+        setShowHelp(false);
         setRes([]);
+        break;
+      case "works":
+        result = "https://frogify.vercel.app";
+        break;
+      case "help":
+        setShowHelp(true);
         break;
       default:
         result = `Command not found: ${command}`;
@@ -89,9 +97,9 @@ const Terminal: React.FC = () => {
     setRes((prevOutput: any) => [
       ...prevOutput,
       <div key={res.length}>
-        {input !== "clear" && <span className="text-white">{"> "}</span>}
-        {input === "clear" ? "" : input}
-        {input !== "clear" && <br />}
+        {command !== "clear" && <span className="text-white">{"> "}</span>}
+        {command === "clear" ? "" : input}
+        {command !== "clear" && <br />}
         <span
           className={clsx(
             "text-lime-500",
@@ -102,7 +110,7 @@ const Terminal: React.FC = () => {
         >
           {result.startsWith("https") ? (
             <Link href={result} target="_blank" className="hover:underline">
-              -{">"} Resume link {"<"}-
+              -{">"} {result} {"<"}-
             </Link>
           ) : (
             result
@@ -114,6 +122,28 @@ const Terminal: React.FC = () => {
     setInput("");
   };
 
+  const help = (
+    <div>
+      <div className="text-white">{"> "}hello...</div>
+      <div className="text-lime-500">
+        <div> {`- type 'hi' to know your animal`}</div>
+        <div>
+          {" "}
+          {`- type 'about' to know more about me, use -r flag to get the resume
+    link`}
+        </div>
+        <div>
+          {" "}
+          {`- type 'xp' to know about my experience, use -t flag to diplay toolkit`}
+        </div>
+        <div>{`- type 'help' to show help`}</div>
+        <div> {`- type 'works' to know about my past works`}</div>
+        <div> {`- type 'clear' to clear the terminal`}</div>
+        <div> {`- Use the up arrow key ( ^ ) to load previous cmd`}</div>
+      </div>
+    </div>
+  );
+
   return (
     <div
       ref={containerRef}
@@ -121,24 +151,7 @@ const Terminal: React.FC = () => {
         "h-[50vh] m-4 rounded-lg bg-neutral-900 p-4 font-mono shadow-inner shadow-neutral-700  overflow-y-auto text-white"
       }
     >
-      <div className="text-md font-mono mb-4">
-        <div className="text-white">{"> "}hello...</div>
-        <div className="text-lime-500">
-          <div> {`- type 'hi' to know your animal`}</div>
-          <div>
-            {" "}
-            {`- type 'about' to know more about me, use -r flag to get the resume
-            link`}
-          </div>
-          <div>
-            {" "}
-            {`- type 'xp' to know about my experience, use -t flag to diplay toolkit`}
-          </div>
-          <div> {`- type 'works' to know about my past works`}</div>
-          <div> {`- type 'clear' to clear the terminal`}</div>
-          <div> {`- Use the up arrow key ( ^ ) to load previous cmd`}</div>
-        </div>
-      </div>
+      <div className="text-md font-mono mb-4">{showHelp && help}</div>
 
       <div>{res}</div>
       <div className="flex">

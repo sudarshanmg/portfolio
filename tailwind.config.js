@@ -26,6 +26,14 @@ module.exports = {
         michaella: ["Mitchaella", "serif"],
         acorn: ["Acorn", "serif"],
       },
+      boxShadow: {
+        "neon-orange":
+          "0 0 10px rgba(255, 165, 0, 0.8), 0 0 10px rgba(255, 140, 0, 0.8), 0 0 10px rgba(255, 165, 0, 0.8), 0 0 10px rgba(255, 165, 0, 0.8), 0 0 50px rgba(255, 140, 0, 0.8)",
+        "neon-blue":
+          "0 0 10px rgba(0, 0, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 0, 255, 0.8), 0 0 10px rgba(0, 0, 255, 0.8), 0 0 50px rgba(0, 255, 255, 0.8)",
+        "neon-green":
+          "0 0 10px rgba(0, 255, 0, 0.8), 0 0 10px rgba(0, 128, 0, 0.8), 0 0 10px rgba(0, 255, 0, 0.8), 0 0 10px rgba(0, 255, 0, 0.8), 0 0 50px rgba(0, 255, 100, 0.8)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

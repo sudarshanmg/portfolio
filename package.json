@@ -17,6 +17,7 @@
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "@vercel/postgres": "^0.4.1",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -37,6 +38,7 @@
     "tsparticles": "^2.11.0",
     "tsparticles-engine": "^2.11.0",
     "tsparticles-slim": "^2.11.0",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "vercel": "^32.2.0"
   }
 }
