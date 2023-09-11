@@ -11,6 +11,7 @@ import { randomAnimal } from "../utils/animalEmojis";
 
 import clsx from "clsx";
 import Link from "next/link";
+
 const Terminal: React.FC = () => {
   const [input, setInput] = useState<string>("");
   const [showHelp, setShowHelp] = useState(true);
@@ -44,54 +45,58 @@ const Terminal: React.FC = () => {
 
   const executeCommand = () => {
     const command = input.toLowerCase().trim();
-    console.log(command);
-
     let result: string = "";
 
-    switch (command) {
-      case "about":
-        result = "I am a software enigineer by day. (and Batman by night 🦇)";
-        break;
-      case "hi":
-        result = `Hello, User ${randomAnimal}!`;
-        break;
-      case "xp":
-        const pattern = /^xp\s+-t\b/;
-        if (pattern.test(command)) {
-          result = `MERN Stack`;
-        } else {
-          result = `Worked as a full-stack developer intern @ Signa-X from Dec-2022 to Mar-2023`;
-        }
-        break;
-      case "clear":
-        result = "";
-        setShowHelp(false);
-        setRes([]);
-        break;
-      case "works":
-        result = "https://frogify.vercel.app";
-        break;
-      case "help":
-        setShowHelp(true);
-        break;
-      default:
-        result = `Command not found: ${command}`;
-        break;
-    }
-
-    // for cmds with flags
-
-    const xp_t = /^xp\s+-t\b/; // xp -t
-    const about_r = /^about\s+-r\b/; // about -r
-
-    if (xp_t.test(command)) {
+    if (command.startsWith("about")) {
+      const pattern = /^about\s+-r\b/;
+      if (pattern.test(command)) {
+        result =
+          "https://drive.google.com/file/d/1OJnELX78XioDBuAjgioT_JKAP8LPqiSO/view?usp=sharing";
+      } else {
+        result = "I am a software engineer by day. (and Batman by night 🦇)";
+      }
+    } else if (command.startsWith("hi")) {
+      result = `Hello, User ${randomAnimal}!`;
+    } else if (command.startsWith("repo")) {
+      result = "https://github.com/sudarshanmg/portfolio";
+    } else if (command.startsWith("xp")) {
+      const pattern = /^xp\s+-t\b/;
+      if (pattern.test(command)) {
+        result = `ReactJS, NextJS, TailwindCSS, NodeJS, MongoDB, BaaS, JS, TS, C/C++, Python, Java, Shell`;
+      } else {
+        result = `Worked as a full-stack developer intern @ Signa-X from Dec-2022 to Mar-2023`;
+      }
+    } else if (command.startsWith("clear")) {
+      result = "";
+      setShowHelp(false);
+      setRes([]);
+    } else if (command.startsWith("works")) {
       result =
-        "ReactJS, NextJS, NodeJS, MongoDB, BaaS, Linux, Python, C/C++, Java, JS/TS";
-    }
+        "Worked as a full-stack developer intern @ Signa-X from Dec 2022 to Mar 2023";
+    } else if (command.startsWith("connect")) {
+      const email_pattern = /^connect\s+-e\b/;
+      const insta_pattern = /^connect\s+-i\b/;
+      const github_pattern = /^connect\s+-g\b/;
+      const x_pattern = /^connect\s+-x\b/;
 
-    if (about_r.test(command)) {
-      result =
-        "https://drive.google.com/file/d/1OJnELX78XioDBuAjgioT_JKAP8LPqiSO/view?usp=drive_link";
+      if (email_pattern.test(command)) {
+        result = "sudarshanmallibhat@gmail.com";
+      } else if (insta_pattern.test(command)) {
+        result = "https://www.instagram.com/sud.ars.han/";
+      } else if (github_pattern.test(command)) {
+        result = "https://github.com/sudarshanmg";
+      } else if (x_pattern.test(command)) {
+        result = "https://twitter.com/pivotanimated";
+      } else {
+        result =
+          "Available on X, GitHub, Instagram and e-mail (Use the appropriate flags!)";
+      }
+    } else if (command.startsWith("help")) {
+      setShowHelp(true);
+    } else if (command.startsWith("exit")) {
+      result = "Haha, nice try! But you cannot exit this terminal 😈";
+    } else {
+      result = `Command not found: ${command}`;
     }
 
     setRes((prevOutput: any) => [
@@ -103,14 +108,15 @@ const Terminal: React.FC = () => {
         <span
           className={clsx(
             "text-lime-500",
-            result === `Command not found: ${command}`
+            result === `Command not found: ${command}` ||
+              command.startsWith("exit")
               ? "text-red-500"
               : "text-lime-500"
           )}
         >
           {result.startsWith("https") ? (
             <Link href={result} target="_blank" className="hover:underline">
-              -{">"} {result} {"<"}-
+              ⭧ {result} ⭧
             </Link>
           ) : (
             result
@@ -126,7 +132,9 @@ const Terminal: React.FC = () => {
     <div>
       <div className="text-white">{"> "}hello...</div>
       <div className="text-lime-500">
+        <div>{`- DESIGNED && DEVELOPED BY SUDARSHAN 🐸, 2023`}</div>
         <div> {`- type 'hi' to know your animal`}</div>
+        <div>{`- type 'repo' to go to the github page`}</div>
         <div>
           {" "}
           {`- type 'about' to know more about me, use -r flag to get the resume
@@ -134,10 +142,14 @@ const Terminal: React.FC = () => {
         </div>
         <div>
           {" "}
-          {`- type 'xp' to know about my experience, use -t flag to diplay toolkit`}
+          {`- type 'xp' to know about my experience, use -t flag to display my toolkit`}
         </div>
         <div>{`- type 'help' to show help`}</div>
         <div> {`- type 'works' to know about my past works`}</div>
+        <div>
+          {" "}
+          {`- type 'connect' to connect with me on 'github (-g)', 'X (-x)', 'instagram (-i), email (-e)'`}
+        </div>
         <div> {`- type 'clear' to clear the terminal`}</div>
         <div> {`- Use the up arrow key ( ^ ) to load previous cmd`}</div>
       </div>
