@@ -11,8 +11,10 @@ import { randomAnimal } from "../utils/animalEmojis";
 
 import clsx from "clsx";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Terminal: React.FC = () => {
+  const router = useRouter();
   const [input, setInput] = useState<string>("");
   const [showHelp, setShowHelp] = useState(true);
   const [res, setRes] = useState<ReactNode[]>([]);
@@ -91,6 +93,22 @@ const Terminal: React.FC = () => {
         result =
           "Available on X, GitHub, Instagram and e-mail (Use the appropriate flags!)";
       }
+    } else if (command.startsWith("cd")) {
+      const about_pattern = /^cd\s+about\b/;
+      const projects_pattern = /^cd\s+projects\b/;
+      const wall_pattern = /^cd\s+wall\b/;
+      if (about_pattern.test(command)) {
+        result = "Redirecting to the about page...";
+        router.push("/about");
+      } else if (projects_pattern.test(command)) {
+        result = "Redirecting to the projects page...";
+        router.push("/projects");
+      } else if (wall_pattern.test(command)) {
+        result = "Redirecting to the wall...";
+        router.push("/wall");
+      } else {
+        result = `Available pages: about, wall, projects`;
+      }
     } else if (command.startsWith("help")) {
       setShowHelp(true);
     } else if (command.startsWith("exit")) {
@@ -134,6 +152,7 @@ const Terminal: React.FC = () => {
       <div className="text-lime-500">
         <div>{`- DESIGNED && DEVELOPED BY SUDARSHAN 🐸, 2023`}</div>
         <div> {`- type 'hi' to know your animal`}</div>
+        <div> {`- use 'cd <page-name>' to go to that page`}</div>
         <div>{`- type 'repo' to go to the github page`}</div>
         <div>
           {" "}
