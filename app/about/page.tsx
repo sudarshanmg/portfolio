@@ -42,12 +42,12 @@ const About = () => {
             <p>Software Developer, India 🇮🇳</p>
             <p className="mt-8 text-justify">
               I am a passionate software developer with a penchant for delving
-              into the intricacies of "why." My journey in the tech realm has
-              been a thrilling ride, deeply rooted in the world of Full Stack
-              development. 🔨 During my tenure as an intern at Signa-X, I had
-              the privilege of crafting websites that seamlessly merged design
-              and functionality. This experience allowed me to cultivate my
-              skills and cultivate a genuine passion for creating digital
+              into the intricacies of {`"why."`} My journey in the tech realm
+              has been a thrilling ride, deeply rooted in the world of Full
+              Stack development. 🔨 During my tenure as an intern at Signa-X, I
+              had the privilege of crafting websites that seamlessly merged
+              design and functionality. This experience allowed me to cultivate
+              my skills and cultivate a genuine passion for creating digital
               masterpieces. 💡 My insatiable curiosity fuels my constant
               exploration of the dynamic tech landscape. I relish the challenge
               of learning new frameworks, diving into complex problems, and
