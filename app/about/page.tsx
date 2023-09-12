@@ -52,7 +52,7 @@ const About = () => {
               exploration of the dynamic tech landscape. I relish the challenge
               of learning new frameworks, diving into complex problems, and
               immersing myself in hands-on coding experiences. Join me as I
-              continue to push the boundaries of what's achievable in the
+              continue to push the boundaries of what{`'`}s achievable in the
               software development universe. Together, we can shape the future,
               one ingenious line of code at a time! 🌟
             </p>
