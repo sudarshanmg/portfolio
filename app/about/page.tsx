@@ -25,6 +25,7 @@ import {
   SiExpress,
   SiMysql,
   SiPostgresql,
+  SiMongodb,
 } from "react-icons/si";
 
 const About = () => {
@@ -239,6 +240,16 @@ const About = () => {
                     </HoverCardTrigger>
                     <HoverCardContent className="w-fit p-1">
                       PostgreSQL
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
+                <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
+                  <HoverCard>
+                    <HoverCardTrigger>
+                      <SiMongodb size={30} />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-fit p-1">
+                      MongoDB
                     </HoverCardContent>
                   </HoverCard>
                 </div>
