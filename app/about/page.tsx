@@ -43,7 +43,7 @@ const About = () => {
 						<h1 className="text-3xl">Sudarshan Mallibhat</h1>
 						<p>Software Engineering Undergrad, 🇮🇳</p>
 						<p className="mt-8 md:text-2xl text-justify font-sans">
-							I'm a software developer and designer with a talent for crafting{" "}
+							I am a software developer and designer with a talent for crafting{" "}
 							<span className="bg-yellow-400/50 text-neutral-300">
 								eye-catching websites
 							</span>
