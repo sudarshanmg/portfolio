@@ -3,6 +3,27 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+    margin-right: 1rem;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(#535050);
+    border-radius: 100vh;
+    border: 3px solid #535050;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #535050;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
