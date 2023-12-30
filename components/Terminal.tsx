@@ -140,6 +140,14 @@ const Terminal: React.FC = () => {
 						>
 							⭧ {result} ⭧
 						</Link>
+					) : result.endsWith("@gmail.com") ? (
+						<Link
+							href={"mailto: " + result}
+							target="_blank"
+							className="hover:underline"
+						>
+							⭧ {result} ⭧
+						</Link>
 					) : (
 						result
 					)}

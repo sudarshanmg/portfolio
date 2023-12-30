@@ -44,11 +44,11 @@ const About = () => {
 						<p>Software Engineering Undergrad, 🇮🇳</p>
 						<p className="mt-8 md:text-2xl text-justify font-sans">
 							I am a software developer and designer with a talent for crafting{" "}
-							<span className="bg-yellow-400/50 text-neutral-300">
+							<span className="bg-yellow-400/50 dark:text-neutral-300">
 								eye-catching websites
 							</span>
 							,{" "}
-							<span className="bg-purple-400/30 text-neutral-300">
+							<span className="bg-purple-400/30 dark:text-neutral-300">
 								developing Machine Learning models
 							</span>
 							, and coding games for enjoyment—particularly relishing the

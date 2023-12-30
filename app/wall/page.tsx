@@ -2,6 +2,8 @@
 import { useRef, FormEvent } from "react";
 import Notes from "@/components/Notes";
 import { supabaseClient } from "@/supabase/supabaseClient";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Wall() {
 	const usernameRef = useRef<HTMLInputElement | null>(null);
@@ -31,9 +33,22 @@ export default function Wall() {
 				className="flex flex-col w-full items-center p-8"
 			>
 				<header className="m-8 text-center">
-					<h1 className="sm:text-4xl md:text-6xl lg:text-8xl text-4xl font-acorn text-neutral-600 text-center">
-						The Wall
-					</h1>
+					<span className="text-8xl m-8 md:m-0  font-acorn text-center">
+						The
+					</span>
+					<span className="text-8xl m-8 md:m-0  font-acorn text-blue-300 text-center">
+						{" "}
+						W
+					</span>
+					<span className="text-8xl m-8 md:m-0  font-acorn text-yellow-300 text-center">
+						a
+					</span>
+					<span className="text-8xl m-8 md:m-0  font-acorn text-pink-300 text-center">
+						l
+					</span>
+					<span className="text-8xl m-8 md:m-0  font-acorn text-green-300 text-center">
+						l
+					</span>
 					<p className="my-4 text-lg font-serif text-left">
 						Check out what others have to say and also...
 					</p>
@@ -42,7 +57,7 @@ export default function Wall() {
 					</h1>
 				</header>
 
-				<input
+				<Input
 					type="text"
 					ref={noteRef}
 					name="note"
@@ -51,7 +66,7 @@ export default function Wall() {
 					className="mb-4 h-12 p-4 rounded-2xl w-5/6"
 					placeholder="Say something..."
 				/>
-				<input
+				<Input
 					type="text"
 					name="username"
 					ref={usernameRef}
@@ -60,12 +75,13 @@ export default function Wall() {
 					className="mb-4 h-12 p-4 rounded-2xl w-5/6"
 					placeholder="Your name..."
 				/>
-				<button
+				<Button
 					type="submit"
-					className="p-2 bg-neutral-400 rounded-xl"
+					variant={"outline"}
+					className="rounded-3xl"
 				>
 					Submit
-				</button>
+				</Button>
 			</form>
 			<Notes />
 		</div>
