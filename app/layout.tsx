@@ -8,24 +8,31 @@ import ModeToggle from "@/components/ModeToggle";
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sudarshan",
-  description: "Software Developer",
+	title: "Sudarshan",
+	description: "Software Developer",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={font.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          {children}
-          <ModeToggle />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html
+			lang="en"
+			suppressHydrationWarning
+		>
+			<body className={font.className}>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="dark"
+					enableSystem
+				>
+					<Navbar />
+					{children}
+					<ModeToggle />
+				</ThemeProvider>
+			</body>
+		</html>
+	);
 }

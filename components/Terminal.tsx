@@ -52,10 +52,12 @@ const Terminal: React.FC = () => {
 		if (command.startsWith("about")) {
 			const pattern = /^about\s+-r\b/;
 			if (pattern.test(command)) {
+				// resume link
 				result =
-					"https://drive.google.com/file/d/1OJnELX78XioDBuAjgioT_JKAP8LPqiSO/view?usp=sharing";
+					"https://drive.google.com/file/d/1KD2iK07of4jjVnV8K1yu6-v2CJk0zjat/view?usp=sharing";
 			} else {
-				result = "I am a software engineer by day. (and Batman by night 🦇)";
+				result =
+					"I am a software engineering undergrad by day. (I make Gotham safe at night.)";
 			}
 		} else if (command.startsWith("hi")) {
 			result = `Hello, User ${randomAnimal}!`;
