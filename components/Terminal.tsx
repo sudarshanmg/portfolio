@@ -54,7 +54,7 @@ const Terminal: React.FC = () => {
 			if (pattern.test(command)) {
 				// resume link
 				result =
-					"https://drive.google.com/file/d/1KD2iK07of4jjVnV8K1yu6-v2CJk0zjat/view?usp=sharing";
+					"https://drive.google.com/file/d/1Fe8q4Ij7g1MEbTycXJdajX4F-DCfsC-8/view?usp=sharing";
 			} else {
 				result =
 					"I am a software engineering undergrad by day. (I make Gotham safe at night.)";
