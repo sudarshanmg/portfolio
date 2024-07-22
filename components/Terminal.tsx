@@ -55,7 +55,8 @@ const Terminal: React.FC = () => {
         // resume link
         result = 'Updating soon...';
       } else {
-        result = 'Software engineer by day. [Versatile explorer at night]';
+        result =
+          'I am Sudarshan Mallibhat, a generalist hacker. I design the best interfaces, build applications and make machines learn. In my spare time I enjoy simulating hypothetical scenarios in my mind. Putting it more mathematically precise: In the vector space of all possible realities, if you consider our universe, I would most likely explore its orthogonal sub-space.';
       }
     } else if (command.startsWith('hi') || command.startsWith('hello')) {
       result = `Hey visitor ${randomAnimal}!`;
@@ -112,9 +113,6 @@ const Terminal: React.FC = () => {
       setShowHelp(true);
     } else if (command.startsWith('exit')) {
       result = 'Haha, nice try! But you cannot exit this terminal 😈';
-    } else if (command.startsWith('whoami')) {
-      result =
-        'I am Sudarshan Mallibhat, a generalist hacker. I design the best interfaces, build applications and make machines learn. In my spare time I enjoy simulating hypothetical scenarios in my mind. Putting it more mathematically precise: In the vector space of all possible realities, if you consider our universe, I would most likely explore its orthogonal sub-space.';
     } else {
       result = `Command not found: ${command}`;
     }
