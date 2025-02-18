@@ -23,12 +23,6 @@ export default function RootLayout({
       <body className={`${font.className} relative h-fit`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Navbar />
-          <Image
-            fill={true}
-            src={Sudobg}
-            alt="Backdrop"
-            className="z-[-1] absolute bg-repeat opacity-20 overflow-x-hidden object-cover"
-          />
           {children}
         </ThemeProvider>
       </body>
