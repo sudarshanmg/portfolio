@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
 
 @layer utilities {
   .scrollbar::-webkit-scrollbar {
@@ -21,6 +21,21 @@
 
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background: #535050;
+  }
+
+  .animate-blink {
+    animation: blink 1s steps(1, start) infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
   }
 }
 
@@ -97,24 +112,27 @@
   body {
     @apply bg-background text-foreground;
   }
+  input {
+    caret-color: blueviolet;
+  }
   @font-face {
-    font-family: 'Playfair';
-    src: url('../public/fonts/playfair.woff2') format('woff2');
+    font-family: "Playfair";
+    src: url("../public/fonts/playfair.woff2") format("woff2");
     font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
     font-display: swap;
     font-style: normal;
   }
   @font-face {
-    font-family: 'Mitchaella';
-    src: url('../public/fonts/mitchaella/Mitchaella\ Free\ Modern\ Unique.woff2')
-      format('woff2');
+    font-family: "Mitchaella";
+    src: url("../public/fonts/mitchaella/Mitchaella\ Free\ Modern\ Unique.woff2")
+      format("woff2");
     font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
     font-display: swap;
     font-style: normal;
   }
   @font-face {
-    font-family: 'acorn';
-    src: url('../public/fonts/acorn.woff') format('woff');
+    font-family: "acorn";
+    src: url("../public/fonts/acorn.woff") format("woff");
     font-weight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
     font-display: swap;
     font-style: normal;

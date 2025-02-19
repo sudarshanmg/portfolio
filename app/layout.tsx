@@ -1,16 +1,15 @@
-import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
-import Navbar from '@/components/Navbar';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import Image from 'next/image';
-import Sudobg from '@/public/images/bg2.jpg';
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/Navbar";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
-const font = Inter({ subsets: ['latin'] });
+const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Sudarshan',
-  description: 'Software Developer',
+  title: "Sudarshan",
+  description: "Software Developer",
 };
 
 export default function RootLayout({
@@ -25,6 +24,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

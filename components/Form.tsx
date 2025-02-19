@@ -2,9 +2,9 @@
 
 const Form = () => {
   return (
-    <form action={"api/add-note"} method="POST">
+    <form action={"api/data/notes"} method="POST">
       <input type="text" name="note" id="note" placeholder="Type anything..." />
-      <input type="text" name="user" id="user" placeholder="Your name..." />
+      <input type="text" name="name" id="name" placeholder="Your name..." />
     </form>
   );
 };

@@ -1,88 +1,94 @@
 "use client";
-import { useRef, FormEvent } from "react";
+import { useRef, FormEvent, useState } from "react";
 import Notes from "@/components/Notes";
-import { supabaseClient } from "@/supabase/supabaseClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { sendPost } from "@/lib/sendPost";
 
 export default function Wall() {
-	const usernameRef = useRef<HTMLInputElement | null>(null);
-	const noteRef = useRef<HTMLInputElement | null>(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const noteRef = useRef<HTMLInputElement | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
 
-	const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const { data, error } = await supabaseClient
-			.from("notes")
-			.insert([
-				{
-					username: usernameRef?.current?.value,
-					note: noteRef?.current?.value,
-				},
-			])
-			.select();
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-		if (data) {
-			window.location.reload();
-		}
-	};
+    // Set loading state
+    setIsSubmitting(true);
 
-	return (
-		<div>
-			<form
-				onSubmit={submitHandler}
-				className="flex flex-col w-full items-center p-8"
-			>
-				<header className="m-8 text-center font-acorn">
-					<span className="text-6xl m-8 md:m-0 text-center">The</span>
-					<span className="text-6xl md:text-8xl m-8 md:m-0 text-blue-300 text-center">
-						{" "}
-						W
-					</span>
-					<span className="text-6xl md:text-8xl m-8 md:m-0 text-yellow-300 text-center">
-						a
-					</span>
-					<span className="text-6xl md:text-8xl m-8 md:m-0 text-pink-300 text-center">
-						l
-					</span>
-					<span className="text-6xl md:text-8xl m-8 md:m-0 text-green-300 text-center">
-						l
-					</span>
+    const note = noteRef?.current?.value;
+    const name = nameRef?.current?.value;
 
-					<p className="my-4 text-lg font-serif text-left">
-						Check out what others have to say and also...
-					</p>
-					<h1 className="sm:text-4xl md:text-6xl text-4xl">
-						Go ahead and leave your footprint!
-					</h1>
-				</header>
+    if (!note || !name) {
+      setIsSubmitting(false);
+      return;
+    }
 
-				<Input
-					type="text"
-					ref={noteRef}
-					name="note"
-					required
-					id="note"
-					className="mb-4 h-12 p-4 rounded-2xl w-5/6"
-					placeholder="Say something..."
-				/>
-				<Input
-					type="text"
-					name="username"
-					ref={usernameRef}
-					required
-					id="username"
-					className="mb-4 h-12 p-4 rounded-2xl w-5/6"
-					placeholder="Your name..."
-				/>
-				<Button
-					type="submit"
-					variant={"outline"}
-					className="rounded-3xl"
-				>
-					Submit
-				</Button>
-			</form>
-			<Notes />
-		</div>
-	);
+    const post = { note, name };
+
+    sendPost(post);
+    setIsSubmitting(false);
+    location.reload();
+  };
+
+  return (
+    <div>
+      <form
+        onSubmit={submitHandler}
+        className="flex flex-col w-full items-center p-8"
+      >
+        <header className="m-8 text-center font-acorn">
+          <span className="text-6xl m-8 md:m-0 text-center">The</span>
+          <span className="text-6xl md:text-8xl m-8 md:m-0 text-blue-300 text-center">
+            {" "}
+            W
+          </span>
+          <span className="text-6xl md:text-8xl m-8 md:m-0 text-yellow-300 text-center">
+            a
+          </span>
+          <span className="text-6xl md:text-8xl m-8 md:m-0 text-pink-300 text-center">
+            l
+          </span>
+          <span className="text-6xl md:text-8xl m-8 md:m-0 text-green-300 text-center">
+            l
+          </span>
+
+          <p className="my-4 text-lg font-serif text-left">
+            Check out what others have to say and also...
+          </p>
+          <h1 className="sm:text-4xl md:text-6xl text-4xl">
+            Go ahead and leave your footprint!
+          </h1>
+        </header>
+
+        <Input
+          type="text"
+          ref={noteRef}
+          name="note"
+          required
+          id="note"
+          className="mb-4 h-12 p-4 rounded-2xl w-5/6"
+          placeholder="Say something..."
+        />
+        <Input
+          type="text"
+          name="name"
+          ref={nameRef}
+          required
+          id="username"
+          className="mb-4 h-12 p-4 rounded-2xl w-5/6"
+          placeholder="Your name..."
+        />
+        <Button
+          type="submit"
+          variant={"outline"}
+          className="rounded-3xl"
+          disabled={isSubmitting} // Disable button while submitting
+        >
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </Button>
+      </form>
+      <Notes />
+    </div>
+  );
 }
