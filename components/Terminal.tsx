@@ -187,7 +187,7 @@ const Terminal: React.FC = () => {
     <div
       ref={containerRef}
       className={
-        "h-[50vh] m-4 rounded-lg bg-neutral-900 p-4 font-mono shadow-inner shadow-neutral-700 overflow-y-auto text-white scrollbar"
+        "h-[90vh] m-4 rounded-lg bg-neutral-900 p-4 font-mono shadow-inner shadow-neutral-700 overflow-y-auto text-white scrollbar"
       }
     >
       <div className="text-white">{"$ "}hello...</div>
