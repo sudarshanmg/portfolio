@@ -26,7 +26,8 @@ export default function Wall() {
 
     const post = { note, name };
 
-    sendPost(post);
+    const result = async () => await sendPost(post);
+    const val = result();
     setIsSubmitting(false);
   };
 
