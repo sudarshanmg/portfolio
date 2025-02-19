@@ -18,11 +18,8 @@ export const sendPost = async (post: Post) => {
 
     if (!response.ok) {
       throw new Error("Failed to leave a note");
-    } else {
-      return true;
     }
-  } catch (error) {
-    console.error("Error creating note:", error);
+  } catch (error: any) {
+    throw new Error(error.message);
   }
-  return false;
 };

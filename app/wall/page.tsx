@@ -26,9 +26,13 @@ export default function Wall() {
 
     const post = { note, name };
 
-    const result = async () => await sendPost(post);
-    const val = result();
-    setIsSubmitting(false);
+    try {
+      sendPost(post);
+    } catch (error: any) {
+      throw new Error(error.message);
+    } finally {
+      location.reload();
+    }
   };
 
   return (
