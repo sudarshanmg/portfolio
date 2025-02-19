@@ -28,7 +28,6 @@ export default function Wall() {
 
     sendPost(post);
     setIsSubmitting(false);
-    location.reload();
   };
 
   return (
