@@ -6,22 +6,20 @@ import Star from "@/public/images/star.svg";
 import Terminal from "@/components/Terminal";
 
 export default function Home() {
-  const [fontSize, setFontSize] = useState(6); // Initial font size in rem
-  const [starSize, setStarSize] = useState(40); // Initial star size in pixels
-  const [subTextSize, setSubTextSize] = useState(2); // Initial subtext size in rem
-  const [opacity, setOpacity] = useState(1); // Initial opacity
+  const [fontSize, setFontSize] = useState(4); // Smaller initial font size for mobile
+  const [starSize, setStarSize] = useState(40);
+  const [subTextSize, setSubTextSize] = useState(1.5); // Smaller initial subtext size for mobile
+  const [opacity, setOpacity] = useState(1);
   const terminalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Ensure the page starts at the top on load
+    window.scrollTo(0, 0);
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
-      // Adjust font size based on scroll position
-      setFontSize(Math.max(2, 6 - scrollY * 0.02));
+      setFontSize(Math.max(1.2, 4 - scrollY * 0.02)); // Smaller dynamic font size for mobile
       setStarSize(Math.max(0, 40 - scrollY * 0.2));
-      setSubTextSize(Math.max(1, 2 - scrollY * 0.01));
+      setSubTextSize(Math.max(0.8, 1.5 - scrollY * 0.01)); // Smaller dynamic subtext size for mobile
       setOpacity(Math.max(0, 1 - scrollY * 0.005));
     };
 
@@ -30,9 +28,7 @@ export default function Home() {
   }, []);
 
   const scrollToTerminal = () => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    terminalRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -50,7 +46,7 @@ export default function Home() {
             />
           </div>
           <h1
-            className="lg:text-8xl sm:text-5xl md:text-7xl text-6xl font-acorn transition-all duration-300"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-acorn transition-all duration-300"
             style={{ fontSize: `${fontSize}rem` }}
           >
             <div>{`Hi. I'm Sudarshan.`}</div>
@@ -67,20 +63,20 @@ export default function Home() {
             />
           </div>
           <h2
-            className="md:text-md text-2xl m-4 font-mono font-semibold text-neutral-500 transition-all duration-300"
+            className="text-sm sm:text-base md:text-lg m-4 font-mono font-semibold text-neutral-500 transition-all duration-300"
             style={{ fontSize: `${subTextSize}rem`, opacity }}
           >
             {`I design and build things.`}
           </h2>
           <button
             onClick={scrollToTerminal}
-            className="mt-8 px-4 py-2 bg-slate-900 text-neutral-500 font-semibold rounded-full shadow-md hover:bg-blue-600 transition-all"
+            className="mt-4 px-4 py-2 bg-slate-900 text-neutral-500 font-semibold rounded-full shadow-md hover:bg-blue-600 transition-all"
           >
             ⬇
           </button>
         </header>
       </div>
-      <div ref={terminalRef}>
+      <div ref={terminalRef} className="mt-8">
         <Terminal />
       </div>
     </main>
