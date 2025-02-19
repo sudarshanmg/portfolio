@@ -29,7 +29,7 @@ export async function GET(request: Request) {
       Vary: "Origin", // Prevents caching of CORS responses
     };
 
-    const data = await collection.find({}).toArray();
+    const data = await collection.find({}).sort({ createdAt: -1 }).toArray();
     return new NextResponse(JSON.stringify(data), { status: 200, headers });
   } catch (error) {
     return new Response(JSON.stringify({ error }), { status: 500 });
