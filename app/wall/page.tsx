@@ -1,39 +1,34 @@
-"use client";
-import { useRef, FormEvent, useState } from "react";
 import Notes from "@/components/Notes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { sendPost } from "@/lib/sendPost";
+import clientPromise from "@/lib/mongodb";
+import { Post } from "@/types/post";
+import { revalidatePath } from "next/cache";
 
 export default function Wall() {
-  const nameRef = useRef<HTMLInputElement | null>(null);
-  const noteRef = useRef<HTMLInputElement | null>(null);
+  const submitForm = async (formData: FormData) => {
+    "use server";
 
-  const [isSending, setIsSending] = useState(false);
-
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const note = noteRef?.current?.value!;
-    const name = nameRef?.current?.value!;
-
-    const post = { note, name };
-
-    setIsSending(true);
+    const note = formData.get("note")!;
+    const name = formData.get("name")!;
 
     try {
-      sendPost(post);
-      setIsSending(false);
-      location.reload();
+      const client = await clientPromise;
+      const db = client.db("sample_mflix");
+      const collection = db.collection("notes");
+
+      const post = { note, name };
+      await collection.insertOne(post);
+      revalidatePath("/wall");
     } catch (error: any) {
-      throw new Error(error.message);
+      console.log(error.message);
     }
   };
 
   return (
     <div>
       <form
-        onSubmit={submitHandler}
+        action={submitForm}
         className="flex flex-col w-full items-center p-8"
       >
         <header className="m-8 text-center font-acorn">
@@ -62,7 +57,6 @@ export default function Wall() {
 
         <Input
           type="text"
-          ref={noteRef}
           name="note"
           required
           id="note"
@@ -72,19 +66,13 @@ export default function Wall() {
         <Input
           type="text"
           name="name"
-          ref={nameRef}
           required
           id="username"
           className="mb-4 h-12 p-4 rounded-2xl w-5/6"
           placeholder="Your name..."
         />
-        <Button
-          type="submit"
-          variant={"outline"}
-          className="rounded-3xl"
-          disabled={isSending}
-        >
-          {isSending ? "Submitting..." : "Submit"}
+        <Button type="submit" variant={"outline"} className="rounded-3xl">
+          {"Submit"}
         </Button>
       </form>
       <Notes />
