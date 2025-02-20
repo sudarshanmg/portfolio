@@ -2,7 +2,6 @@ import Notes from "@/components/Notes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import clientPromise from "@/lib/mongodb";
-import { Post } from "@/types/post";
 import { revalidatePath } from "next/cache";
 
 export default function Wall() {
@@ -19,7 +18,7 @@ export default function Wall() {
 
       const post = { note, name };
       await collection.insertOne(post);
-      revalidatePath("/wall");
+      location.reload();
     } catch (error: any) {
       console.log(error.message);
     }
