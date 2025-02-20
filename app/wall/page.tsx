@@ -2,7 +2,6 @@ import Notes from "@/components/Notes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import clientPromise from "@/lib/mongodb";
-import { revalidatePath } from "next/cache";
 
 export default function Wall() {
   const submitForm = async (formData: FormData) => {
@@ -18,10 +17,10 @@ export default function Wall() {
 
       const post = { note, name };
       await collection.insertOne(post);
-      location.reload();
     } catch (error: any) {
       console.log(error.message);
     }
+    location.reload();
   };
 
   return (
