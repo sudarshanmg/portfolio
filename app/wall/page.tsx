@@ -2,6 +2,7 @@ import Notes from "@/components/Notes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import clientPromise from "@/lib/mongodb";
+import { revalidatePath } from "next/cache";
 
 export default function Wall() {
   const submitForm = async (formData: FormData) => {
@@ -20,7 +21,7 @@ export default function Wall() {
     } catch (error: any) {
       console.log(error.message);
     }
-    location.reload();
+    revalidatePath("/wall");
   };
 
   return (
