@@ -7,6 +7,8 @@ import GridItem from "./GridItem";
 
 const Notes = () => {
   const [posts, setNotes] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchNotes = async () => {
       try {
@@ -20,13 +22,19 @@ const Notes = () => {
         setNotes(data);
       } catch (error) {
         console.error("Error fetching notes:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchNotes();
   }, []);
-  return (
-    <div className="w-full h-full flex flex-col items-center my-8">
+  return isLoading ? (
+    <header className="text-center font-thin font-mono text-neutral-500">
+      loading...
+    </header>
+  ) : (
+    <div className="w-full h-full flex flex-col items-center my-8 overflow-x-clip">
       {posts && (
         <div className="w-full h-full">
           <GridContainer>

@@ -8,30 +8,25 @@ import { sendPost } from "@/lib/sendPost";
 export default function Wall() {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const noteRef = useRef<HTMLInputElement | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
+
+  const [isSending, setIsSending] = useState(false);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Set loading state
-    setIsSubmitting(true);
-
-    const note = noteRef?.current?.value;
-    const name = nameRef?.current?.value;
-
-    if (!note || !name) {
-      setIsSubmitting(false);
-      return;
-    }
+    const note = noteRef?.current?.value!;
+    const name = nameRef?.current?.value!;
 
     const post = { note, name };
 
+    setIsSending(true);
+
     try {
       sendPost(post);
+      setIsSending(false);
+      location.reload();
     } catch (error: any) {
       throw new Error(error.message);
-    } finally {
-      location.reload();
     }
   };
 
@@ -87,9 +82,9 @@ export default function Wall() {
           type="submit"
           variant={"outline"}
           className="rounded-3xl"
-          disabled={isSubmitting} // Disable button while submitting
+          disabled={isSending}
         >
-          {isSubmitting ? "Submitting..." : "Submit"}
+          {isSending ? "Submitting..." : "Submit"}
         </Button>
       </form>
       <Notes />

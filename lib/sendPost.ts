@@ -19,6 +19,7 @@ export const sendPost = async (post: Post) => {
     if (!response.ok) {
       throw new Error("Failed to leave a note");
     }
+    location.reload();
   } catch (error: any) {
     throw new Error(error.message);
   }

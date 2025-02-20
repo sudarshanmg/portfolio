@@ -45,8 +45,7 @@ const About = () => {
             I am a software developer and a designer with a talent for fiddling{" "}
             <span className="bg-yellow-400/50 dark:text-neutral-300">
               with every new tech.
-            </span>
-            ,{" "}
+            </span>{" "}
           </p>
         </div>
       </section>
@@ -56,8 +55,8 @@ const About = () => {
           <div>
             <p className="mt-8">Frameworks</p>
             <div className="flex items-center md:items-start justify-center md:justify-normal">
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoReact size={30} />
                   </HoverCardTrigger>
@@ -66,8 +65,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiNextdotjs size={30} />
                   </HoverCardTrigger>
@@ -77,8 +76,8 @@ const About = () => {
                 </HoverCard>
               </div>
 
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoTailwindCss size={30} />
                   </HoverCardTrigger>
@@ -87,8 +86,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiExpress size={30} />
                   </HoverCardTrigger>
@@ -97,8 +96,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiNodedotjs size={30} />
                   </HoverCardTrigger>
@@ -112,8 +111,8 @@ const About = () => {
           <div>
             <p className="mt-8">Languages</p>
             <div className="flex items-center md:items-start justify-center md:justify-normal">
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiJavascript size={30} />
                   </HoverCardTrigger>
@@ -122,8 +121,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiTypescript size={30} />
                   </HoverCardTrigger>
@@ -133,8 +132,8 @@ const About = () => {
                 </HoverCard>
               </div>
 
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiPython size={30} />
                   </HoverCardTrigger>
@@ -143,8 +142,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiCplusplus size={30} />
                   </HoverCardTrigger>
@@ -153,8 +152,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoJava size={30} />
                   </HoverCardTrigger>
@@ -168,16 +167,16 @@ const About = () => {
           <div>
             <p className="mt-8">Tools</p>
             <div className="flex items-center md:items-start justify-center md:justify-normal">
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoGit size={30} />
                   </HoverCardTrigger>
                   <HoverCardContent className="w-fit p-1">Git</HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoFigma size={30} />
                   </HoverCardTrigger>
@@ -187,8 +186,8 @@ const About = () => {
                 </HoverCard>
               </div>
 
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoGithub size={30} />
                   </HoverCardTrigger>
@@ -197,8 +196,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <BiLogoDocker size={30} />
                   </HoverCardTrigger>
@@ -212,8 +211,8 @@ const About = () => {
           <div>
             <p className="mt-8">Databases</p>
             <div className="flex items-center md:items-start justify-center md:justify-normal">
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiMysql size={30} />
                   </HoverCardTrigger>
@@ -222,8 +221,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiPostgresql size={30} />
                   </HoverCardTrigger>
@@ -232,8 +231,8 @@ const About = () => {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="m-4 ml-0 hover:cursor-pointer hover:shadow-neon-orange">
-                <HoverCard>
+              <div className="m-4 ml-0 hover:cursor-pointer ">
+                <HoverCard openDelay={100}>
                   <HoverCardTrigger>
                     <SiMongodb size={30} />
                   </HoverCardTrigger>
@@ -252,7 +251,7 @@ const About = () => {
           <h1 className="text-2xl mt-4">
             Bachelor of Engineering in Information Science {`[2020-2024]`}
             <br />
-            {`CGPA: 8.06`}
+            {`CGPA: 8.11`}
           </h1>
           <p>Malnad College of Engineering, Hassan, Karnataka</p>
         </div>
