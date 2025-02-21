@@ -15,7 +15,6 @@ import { useRouter } from "next/navigation";
 const Terminal: React.FC = () => {
   const router = useRouter();
   const [input, setInput] = useState<string>("");
-  const [showHelp, setShowHelp] = useState(false);
   const [res, setRes] = useState<ReactNode[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -80,7 +79,7 @@ const Terminal: React.FC = () => {
         result = "Updating soon...";
       } else {
         result =
-          "I am Sudarshan, a generalist hacker. I design the best interfaces, build applications and make machines learn. In my spare time I enjoy simulating hypothetical scenarios in my mind. Putting it more mathematically precise: In the vector space of all possible realities, if you consider our universe, I would most likely explore its orthogonal sub-space.";
+          "I am Sudarshan, a generalist hacker. I design the best interfaces, build applications and make machines learn. In my spare time I enjoy simulating hypothetical scenarios in my mind. Putting it more mathematically precise: In the vector space of all realities, if you consider our universe vector, I would most likely explore its orthogonal sub-space.";
       }
     } else if (command.startsWith("hi") || command.startsWith("hello")) {
       result = `Hey visitor ${randomAnimal}!`;
@@ -95,7 +94,6 @@ const Terminal: React.FC = () => {
       }
     } else if (command.startsWith("clear")) {
       result = "";
-      setShowHelp(false);
       setRes([]);
     } else if (command.startsWith("works")) {
       result = "▶ Associate SDE @ Toshiba India";

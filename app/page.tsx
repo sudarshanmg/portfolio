@@ -1,7 +1,6 @@
 "use client"; // Ensure this is a client component
 
 import { useEffect, useState, useRef } from "react";
-import { BiDownArrowCircle } from "react-icons/bi";
 import { ArrowDownIcon } from "lucide-react";
 import Image from "next/image";
 import Star from "@/public/images/star.svg";
