@@ -29,6 +29,7 @@ const Notes = () => {
 
     fetchNotes();
   }, []);
+
   return isLoading ? (
     <header className="text-center font-thin font-mono text-neutral-500">
       loading...
