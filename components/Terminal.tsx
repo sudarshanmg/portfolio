@@ -90,7 +90,7 @@ const Terminal: React.FC = () => {
       if (pattern.test(command)) {
         result = `▶ ReactJS, NextJS, TailwindCSS, NodeJS, MongoDB, BaaS, JS, TS, C/C++, Python, Java, Shell`;
       } else {
-        result = `▶ Associate Software Engineer @ Toshiba Softwares, India`;
+        result = `▶ Associate SDE @ Toshiba Softwares (since 2024), Ex-intern at Signa-X (2023)`;
       }
     } else if (command.startsWith("clear")) {
       result = "";
