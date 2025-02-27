@@ -3,4 +3,4 @@
 - ⚠️ WIP
 - Star the repo if you like it! ⭐
 - Happy to hear the issues ⛔
-- [sudarshanmg.vercel.app](https://sudarshanmg.vercel.app)
+- [sudarshanmg.vercel.app](https://sudarshanmg.tech)
