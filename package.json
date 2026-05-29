@@ -47,6 +47,9 @@
     "typescript": "5.1.6",
     "vercel": "^32.2.0"
   },
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "devDependencies": {
     "eslint-config-next": "^16.2.6"
   }
