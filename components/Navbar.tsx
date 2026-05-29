@@ -1,88 +1,41 @@
 "use client";
 import { usePathname } from "next/navigation";
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuList,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuViewport,
-	NavigationMenuTrigger,
-	navigationMenuTriggerStyle,
-	NavigationMenuIndicator,
-} from "@/components/ui/navigation-menu";
-import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
+const routes = [
+  { title: "Home", href: "/" },
+  { title: "About", href: "/about" },
+  { title: "Projects", href: "/projects" },
+  { title: "Wall", href: "/wall" },
+];
+
 const Navbar = () => {
-	const pathname = usePathname();
-	const routes: {
-		title: string;
-		href: string;
-		active?: boolean;
-	}[] = [
-		{
-			title: "Home",
-			href: "/",
-			active: pathname === "/",
-		},
-		{
-			title: "About",
-			href: "/about",
-			active: pathname === "/about",
-		},
-		{
-			title: "Projects",
-			href: "/projects",
-			active: pathname === "/projects",
-		},
-		{
-			title: "Wall",
-			href: "/wall",
-			active: pathname === "/contact",
-		},
-	];
-	return (
-		<div className="flex justify-center">
-			<nav className="my-4 mx-0 flex justify-center w-full rounded-none hover:bg-inherit shadow-none bg-transparent overflow-hidden lg:rounded-full lg:bg-inherit lg:shadow-slate-700 lg:shadow-inner sm:w-auto sm:mx-4">
-				<NavigationMenu className="p-2">
-					<NavigationMenuList className="bg-transparent rounded-full">
-						{routes.map((route, index) => (
-							<div
-								className="flex items-center"
-								key={route.title}
-							>
-								<NavigationMenuItem>
-									<Link
-										href={route.href}
-										legacyBehavior
-										passHref
-									>
-										<NavigationMenuLink
-											className={twMerge(
-												navigationMenuTriggerStyle(),
-												"bg-transparent rounded-full"
-											)}
-											active={route.active}
-										>
-											{route.title}
-										</NavigationMenuLink>
-									</Link>
-								</NavigationMenuItem>
-								{index !== routes.length - 1 && (
-									<Separator
-										orientation="vertical"
-										className="h-[30px] m-1"
-									/>
-								)}
-							</div>
-						))}
-					</NavigationMenuList>
-				</NavigationMenu>
-			</nav>
-		</div>
-	);
+  const pathname = usePathname();
+
+  return (
+    <div className="flex justify-center pt-6 px-4 sticky top-0 z-50">
+      <nav className="flex items-center gap-1 px-2 py-2 bg-[#111111] border-2 border-white/20 brutal-shadow-sm">
+        {routes.map((route) => {
+          const isActive = pathname === route.href;
+          return (
+            <Link
+              key={route.href}
+              href={route.href}
+              className={twMerge(
+                "px-4 py-1.5 text-sm font-mono font-bold uppercase tracking-wide transition-all duration-150 border-2 border-transparent",
+                isActive
+                  ? "bg-orange-500 text-black"
+                  : "text-neutral-400 hover:text-white hover:border-white/20"
+              )}
+            >
+              {route.title}
+            </Link>
+          );
+        })}
+      </nav>
+    </div>
+  );
 };
 
 export default Navbar;
