@@ -8,8 +8,8 @@ import { Analytics } from "@vercel/analytics/react";
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sudarshan",
-  description: "Software Developer",
+  title: "Sudarshan — Systems Engineer",
+  description: "Software Engineer. C/C++, GoLang, TypeScript. I build things that matter.",
 };
 
 export default function RootLayout({
@@ -19,8 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${font.className} relative h-fit`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <body className={`${font.className} relative h-fit bg-[#0a0a0a]`}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
           <Navbar />
           {children}
         </ThemeProvider>

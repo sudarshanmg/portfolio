@@ -27,15 +27,14 @@ const Terminal: React.FC = () => {
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.focus(); // Auto-focus the input on load
+      inputRef.current.focus();
     }
   }, []);
 
   useEffect(() => {
     if (inputRef.current && caretRef.current) {
-      // Measure the width of the text in the input
-      const textWidth = getTextWidth(input, "16px monospace");
-      caretRef.current.style.left = `${textWidth + 10}px`; // Adjust based on prompt and padding
+      const textWidth = getTextWidth(input, "14px monospace");
+      caretRef.current.style.left = `${textWidth + 18}px`;
     }
   }, [input]);
 
@@ -55,12 +54,8 @@ const Terminal: React.FC = () => {
   };
 
   const handleEnterKey = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      executeCommand();
-    }
-    if (e.key === "ArrowUp") {
-      setInput(prevInput);
-    }
+    if (e.key === "Enter") executeCommand();
+    if (e.key === "ArrowUp") setInput(prevInput);
   };
 
   const scrollToBottom = () => {
@@ -88,7 +83,7 @@ const Terminal: React.FC = () => {
     } else if (command.startsWith("xp")) {
       const pattern = /^xp\s+-t\b/;
       if (pattern.test(command)) {
-        result = `▶ ReactJS, NextJS, TailwindCSS, NodeJS, MongoDB, BaaS, JS, TS, C/C++, Python, Java, Shell`;
+        result = `▶ C/C++, GoLang, ReactJS, NextJS, TailwindCSS, NodeJS, MongoDB, BaaS, JS, TS, Python, Java, Shell`;
       } else {
         result = `▶ Associate SDE @ Toshiba Softwares (since 2024), Ex-intern at Signa-X (2023)`;
       }
@@ -106,7 +101,7 @@ const Terminal: React.FC = () => {
       if (email_pattern.test(command)) {
         result = "sudarshanmallibhat@gmail.com";
       } else if (insta_pattern.test(command)) {
-        result = "Not available currectly";
+        result = "Not available currently";
       } else if (github_pattern.test(command)) {
         result = "https://github.com/sudarshanmg";
       } else if (x_pattern.test(command)) {
@@ -139,35 +134,36 @@ const Terminal: React.FC = () => {
       result = `▶ Command not found: ${command}`;
     }
 
-    // Split the result by newlines and render each line as a separate <div>
-    const formattedResult = result
-      .split("\n")
-      .map((line, index) => <div key={index}>{line}</div>);
+    const isError =
+      result === `▶ Command not found: ${command}` ||
+      command.startsWith("exit");
 
-    setRes((prevOutput: any) => [
+    const formattedResult = result.split("\n").map((line, index) => (
+      <div key={index}>{line}</div>
+    ));
+
+    setRes((prevOutput: ReactNode[]) => [
       ...prevOutput,
-      <div key={res.length}>
-        {command !== "clear" && <span className="text-white">{"$ "}</span>}
-        {command === "clear" ? "" : input}
+      <div key={res.length} className="mb-1">
+        {command !== "clear" && (
+          <span className="text-orange-400 font-bold">{"sudarshan@dev:~$ "}</span>
+        )}
+        <span className="text-white">{command === "clear" ? "" : input}</span>
         {command !== "clear" && <br />}
         <span
           className={clsx(
-            "text-lime-500",
-            result === `▶ Command not found: ${command}` ||
-              command.startsWith("exit")
-              ? "text-red-500"
-              : "text-lime-500"
+            isError ? "text-red-400" : "text-emerald-400"
           )}
         >
           {result.startsWith("https") ? (
-            <Link href={result} target="_blank" className="hover:underline">
+            <Link href={result} target="_blank" className="hover:underline text-amber-400">
               ⭧ {result} ⭧
             </Link>
           ) : result.endsWith("@gmail.com") ? (
             <Link
               href={"mailto: " + result}
               target="_blank"
-              className="hover:underline"
+              className="hover:underline text-amber-400"
             >
               ⭧ {result} ⭧
             </Link>
@@ -182,36 +178,49 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className={
-        "h-[90vh] m-4 rounded-lg bg-neutral-900 p-4 font-mono shadow-inner shadow-neutral-700 overflow-y-auto text-white scrollbar"
-      }
-    >
-      <div className="text-white">{"$ "}hello...</div>
-      <div className="text-lime-500">
-        <div> {`▶ type 'help' to know more...`}</div>
+    <div className="mx-4 mb-8 rounded-xl overflow-hidden glow-border">
+      {/* Terminal window bar */}
+      <div className="flex items-center gap-2 px-4 py-3 bg-[#111111] border-b border-white/10">
+        <div className="w-3 h-3 rounded-full bg-red-500" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500" />
+        <div className="w-3 h-3 rounded-full bg-green-500" />
+        <span className="ml-3 text-xs text-neutral-500 font-mono">sudarshan@dev — bash</span>
+        <div className="ml-auto text-xs text-neutral-600 font-mono">~/portfolio</div>
       </div>
 
-      <div>{res}</div>
-      <div className="flex relative">
-        <span className="text-white">{"$"}</span>
-        <input
-          ref={inputRef}
-          autoCapitalize="false"
-          spellCheck="false"
-          autoComplete="off"
-          value={input}
-          className="bg-transparent outline-none border-none p-0 w-5/6 resize-none pl-2 caret-transparent"
-          onChange={handleInputChange}
-          onKeyDown={handleEnterKey}
-          autoFocus
-        />
-        <span
-          ref={caretRef}
-          className="absolute h-5 w-2 ml-2 bg-neutral-200 animate-blink"
-          style={{ left: "10px" }} // Initial position
-        ></span>
+      {/* Terminal body */}
+      <div
+        ref={containerRef}
+        className="h-[75vh] bg-[#0d0d0d] p-4 font-mono text-sm overflow-y-auto scrollbar"
+        onClick={() => inputRef.current?.focus()}
+      >
+        <div className="text-orange-400 font-bold mb-1">{"sudarshan@dev:~$ "}<span className="text-white">hello...</span></div>
+        <div className="text-emerald-400 mb-4">
+          <div>{`▶ Welcome. type 'help' to explore.`}</div>
+          <div className="text-neutral-500 text-xs mt-1">{`// C/C++ • GoLang • TypeScript • Python`}</div>
+        </div>
+
+        <div>{res}</div>
+
+        <div className="flex relative items-center mt-1">
+          <span className="text-orange-400 font-bold whitespace-nowrap">{"sudarshan@dev:~$ "}</span>
+          <input
+            ref={inputRef}
+            autoCapitalize="false"
+            spellCheck="false"
+            autoComplete="off"
+            value={input}
+            className="bg-transparent outline-none border-none p-0 w-5/6 resize-none pl-0 caret-transparent text-white"
+            onChange={handleInputChange}
+            onKeyDown={handleEnterKey}
+            autoFocus
+          />
+          <span
+            ref={caretRef}
+            className="absolute h-4 w-2 bg-orange-400 animate-blink opacity-80"
+            style={{ left: "162px" }}
+          />
+        </div>
       </div>
     </div>
   );

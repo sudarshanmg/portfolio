@@ -1,27 +1,47 @@
-"use client"; // Ensure this is a client component
+"use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowDownIcon } from "lucide-react";
-import Image from "next/image";
-import Star from "@/public/images/star.svg";
 import Terminal from "@/components/Terminal";
 
+const ROLES = ["C/C++", "GoLang", "TypeScript", "Systems Engineer"];
+
 export default function Home() {
-  const [starSize, setStarSize] = useState(40);
-  const [opacity, setOpacity] = useState(1);
   const terminalRef = useRef<HTMLDivElement | null>(null);
+  const roleRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setStarSize(Math.max(0, 40 - scrollY * 0.2));
-      setOpacity(Math.max(0, 1 - scrollY * 0.005));
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const tick = () => {
+      const current = ROLES[roleIndex];
+      if (!roleRef.current) return;
+
+      if (!deleting) {
+        roleRef.current.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(tick, 1600);
+          return;
+        }
+      } else {
+        roleRef.current.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % ROLES.length;
+        }
+      }
+      setTimeout(tick, deleting ? 60 : 100);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const timer = setTimeout(tick, 600);
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollToTerminal = () => {
@@ -29,50 +49,55 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col justify-stretch">
-      <div className="text-center my-16 mx-4 max-h-fit">
-        <header className="font-playfair">
-          <div className="hidden lg:block relative">
-            <Image
-              src={Star}
-              width={starSize}
-              height={starSize}
-              alt="star bro"
-              className="right-60 absolute"
-              style={{ opacity }}
-            />
-          </div>
-          <h1
-            className="text-6xl md:text-6xl lg:text-8xl font-acorn transition-all duration-300"
-            style={{ opacity }}
-          >
-            <div>{`Hi. I'm Sudarshan.`}</div>
-            <div className="font-extralight">El creator.</div>
-          </h1>
-          <div className="hidden lg:block relative">
-            <Image
-              src={Star}
-              width={starSize}
-              height={starSize}
-              alt="star bro"
-              className="left-60 absolute bottom-4"
-              style={{ opacity }}
-            />
-          </div>
-          <h2
-            className="text-sm sm:text-md md:text-lg m-4 font-mono font-semibold text-neutral-500 transition-all duration-300"
-            style={{ opacity }}
-          >
-            {`I design and build things.`}
-          </h2>
-          <button onClick={scrollToTerminal}>
-            <ArrowDownIcon
-              className="transition-all text-slate-800 hover:text-slate-600 m-4"
-              size={40}
-            />
-          </button>
-        </header>
-      </div>
+    <main className="flex flex-col">
+      {/* Hero */}
+      <section className="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/5 blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-red-500/5 blur-2xl" />
+        </div>
+
+        {/* Tag line */}
+        <div className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-mono tracking-widest uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+          Associate SDE @ Toshiba
+        </div>
+
+        {/* Main heading */}
+        <h1 className="font-acorn text-[clamp(4rem,14vw,11rem)] leading-none tracking-tight text-white mb-4">
+          Sudarshan
+        </h1>
+
+        {/* Animated role */}
+        <div className="font-mono text-xl md:text-2xl text-neutral-400 mb-6 h-8 flex items-center gap-2">
+          <span className="text-orange-400">&gt;</span>
+          <span ref={roleRef} className="text-gradient-warm font-semibold" />
+          <span className="w-0.5 h-6 bg-orange-400 animate-blink inline-block" />
+        </div>
+
+        {/* Subtitle */}
+        <p className="max-w-xl text-neutral-500 text-base md:text-lg font-mono leading-relaxed mb-12">
+          {`I design and build things — from low-level systems`}
+          <br />
+          {`to full-stack web apps.`}
+        </p>
+
+        {/* CTA */}
+        <button
+          onClick={scrollToTerminal}
+          className="group flex flex-col items-center gap-2 text-neutral-600 hover:text-orange-400 transition-colors duration-200"
+          aria-label="Scroll to terminal"
+        >
+          <span className="text-xs font-mono tracking-widest uppercase">explore</span>
+          <ArrowDownIcon
+            size={20}
+            className="group-hover:translate-y-1 transition-transform duration-200"
+          />
+        </button>
+      </section>
+
+      {/* Terminal */}
       <div ref={terminalRef}>
         <Terminal />
       </div>
