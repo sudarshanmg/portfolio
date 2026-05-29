@@ -27,7 +27,7 @@
     "clsx": "^2.0.0",
     "embla-carousel-react": "^8.0.0-rc17",
     "encoding": "^0.1.13",
-    "eslint": "8.45.0",
+    "eslint": "^9.39.4",
     "framer-motion": "^10.12.21",
     "lucide-react": "^0.262.0",
     "mongodb": "^6.13.0",
