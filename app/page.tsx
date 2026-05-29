@@ -70,10 +70,8 @@ export default function Home() {
           </div>
 
           {/* Name */}
-          <h1 className="font-acorn text-[clamp(3.5rem,10vw,8rem)] leading-[0.82] tracking-tighter text-white noise-text mb-5">
-            Sudar
-            <br />
-            <span className="text-orange-500">shan</span>
+          <h1 className="font-acorn text-[clamp(3rem,8vw,7rem)] leading-[0.85] tracking-tighter text-white noise-text mb-5 break-words">
+            Sudar<span className="text-orange-500">shan</span>
           </h1>
 
           {/* Animated role */}
