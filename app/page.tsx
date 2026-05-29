@@ -5,6 +5,10 @@ import { ArrowDownIcon } from "lucide-react";
 import Terminal from "@/components/Terminal";
 
 const ROLES = ["C/C++", "GoLang", "TypeScript", "Systems Engineer"];
+const STACK = [
+  "C++", "Go", "Python", "TypeScript", "Qt/QML", "OpenGL",
+  "Embedded Linux", "Flask", "Next.js", "PostgreSQL", "Docker",
+];
 
 export default function Home() {
   const terminalRef = useRef<HTMLDivElement | null>(null);
@@ -16,6 +20,7 @@ export default function Home() {
     let roleIndex = 0;
     let charIndex = 0;
     let deleting = false;
+    let timer: ReturnType<typeof setTimeout>;
 
     const tick = () => {
       const current = ROLES[roleIndex];
@@ -26,7 +31,7 @@ export default function Home() {
         charIndex++;
         if (charIndex === current.length) {
           deleting = true;
-          setTimeout(tick, 1600);
+          timer = setTimeout(tick, 1600);
           return;
         }
       } else {
@@ -37,10 +42,10 @@ export default function Home() {
           roleIndex = (roleIndex + 1) % ROLES.length;
         }
       }
-      setTimeout(tick, deleting ? 60 : 100);
+      timer = setTimeout(tick, deleting ? 55 : 95);
     };
 
-    const timer = setTimeout(tick, 600);
+    timer = setTimeout(tick, 600);
     return () => clearTimeout(timer);
   }, []);
 
@@ -51,36 +56,38 @@ export default function Home() {
   return (
     <main className="flex flex-col">
       {/* Hero */}
-      <section className="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
-        {/* Background decoration */}
+      <section className="min-h-[82vh] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden grid-bg">
+        {/* Background blobs */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/5 blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-red-500/5 blur-2xl" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/10 blur-3xl animate-float" />
+          <div className="absolute bottom-0 right-10 w-[280px] h-[280px] rounded-full bg-red-500/10 blur-2xl" />
+          <div className="absolute top-10 left-10 w-[220px] h-[220px] rounded-full bg-yellow-500/5 blur-2xl" />
         </div>
 
-        {/* Tag line */}
-        <div className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-mono tracking-widest uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-          Associate SDE @ Toshiba
+        {/* Sticker tag */}
+        <div className="mb-8 -rotate-2 animate-wiggle">
+          <span className="inline-block bg-orange-500 text-black font-mono font-bold text-xs tracking-widest uppercase px-3 py-1.5 border-2 border-black brutal-shadow-sm">
+            ./hello_world
+          </span>
         </div>
 
         {/* Main heading */}
-        <h1 className="font-acorn text-[clamp(4rem,14vw,11rem)] leading-none tracking-tight text-white mb-4">
+        <h1 className="font-acorn text-[clamp(4rem,15vw,12rem)] leading-[0.85] tracking-tighter text-white mb-6 noise-text">
           Sudarshan
         </h1>
 
         {/* Animated role */}
-        <div className="font-mono text-xl md:text-2xl text-neutral-400 mb-6 h-8 flex items-center gap-2">
+        <div className="font-mono text-xl md:text-2xl text-neutral-400 mb-8 h-8 flex items-center gap-2">
           <span className="text-orange-400">&gt;</span>
-          <span ref={roleRef} className="text-gradient-warm font-semibold" />
+          <span ref={roleRef} className="text-gradient-warm font-bold" />
           <span className="w-0.5 h-6 bg-orange-400 animate-blink inline-block" />
         </div>
 
         {/* Subtitle */}
         <p className="max-w-xl text-neutral-500 text-base md:text-lg font-mono leading-relaxed mb-12">
-          {`I design and build things — from low-level systems`}
+          {`I design and build things — from bare-metal Qt/QML`}
           <br />
-          {`to full-stack web apps.`}
+          {`on embedded Linux to full-stack web platforms.`}
         </p>
 
         {/* CTA */}
@@ -96,6 +103,20 @@ export default function Home() {
           />
         </button>
       </section>
+
+      {/* Tech marquee */}
+      <div className="relative overflow-hidden border-y-2 border-orange-500/40 bg-orange-500 py-3 mb-8 -rotate-1">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...STACK, ...STACK].map((tech, i) => (
+            <span
+              key={i}
+              className="mx-6 text-black font-mono font-bold text-lg uppercase tracking-wide"
+            >
+              {tech} <span className="text-black/40">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Terminal */}
       <div ref={terminalRef}>

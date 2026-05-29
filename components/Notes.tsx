@@ -41,10 +41,10 @@ const Notes = () => {
           <GridContainer>
             {posts.map((post, index) => (
               <GridItem key={index}>
-                <h1 className="font-acorn text-4xl text-neutral-700">
+                <h1 className="font-acorn text-2xl text-neutral-800 break-words leading-tight">
                   {post.note}
                 </h1>
-                <span className="font-playfair text-black">- {post.name}</span>
+                <span className="font-playfair text-black break-words">- {post.name}</span>
               </GridItem>
             ))}
           </GridContainer>

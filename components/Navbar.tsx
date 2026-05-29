@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-center pt-6 px-4 sticky top-0 z-50">
-      <nav className="flex items-center gap-1 px-2 py-2 rounded-full bg-[#111111] border border-white/10 shadow-lg shadow-black/50 backdrop-blur-sm">
+      <nav className="flex items-center gap-1 px-2 py-2 bg-[#111111] border-2 border-white/20 brutal-shadow-sm">
         {routes.map((route) => {
           const isActive = pathname === route.href;
           return (
@@ -23,10 +23,10 @@ const Navbar = () => {
               key={route.href}
               href={route.href}
               className={twMerge(
-                "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200",
+                "px-4 py-1.5 text-sm font-mono font-bold uppercase tracking-wide transition-all duration-150 border-2 border-transparent",
                 isActive
-                  ? "bg-orange-500 text-black font-semibold"
-                  : "text-neutral-400 hover:text-white hover:bg-white/5"
+                  ? "bg-orange-500 text-black"
+                  : "text-neutral-400 hover:text-white hover:border-white/20"
               )}
             >
               {route.title}

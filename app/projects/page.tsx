@@ -1,165 +1,147 @@
 "use client";
 import Link from "next/link";
-import { ExternalLink, Github, AlertTriangle } from "lucide-react";
+import { ExternalLink, Github, Cpu } from "lucide-react";
 
 type Project = {
   title: string;
   desc: string;
   tools: string;
-  techColor: string;
-  techLabel: string;
+  tech: string;
+  accent: string; // tailwind color base e.g. "red"
   deploymentLink?: string;
   githubLink?: string;
-  alert?: boolean;
+  badge?: string; // e.g. "WORK" / "BUILDING"
   wide?: boolean;
   tall?: boolean;
 };
 
 const projects: Project[] = [
   {
-    title: "File Compressor (Huffman)",
-    desc: "Lossless file compression from scratch implementing Huffman encoding algorithm. Compresses any file type.",
-    tools: "C++",
-    techColor: "border-red-500/60 shadow-red-500/10",
-    techLabel: "C++",
-    githubLink: "https://github.com/sudarshanmg/huffman",
+    title: "app-core",
+    desc: "A shared Qt/QML architecture framework — the foundation for 7+ embedded display applications across Toshiba TEC printer models, all driven from a single model-driven codebase. Renders correctly across differing screen geometries (272×400 & 240×240).",
+    tools: "C++, Qt6, Qt/QML, Embedded Linux",
+    tech: "C++",
+    accent: "red",
+    badge: "WORK · LEAD DEV",
     wide: true,
   },
   {
-    title: "Artificial Neural Network",
-    desc: "A complete ANN library built from scratch — forward pass, backprop, gradient descent. No frameworks.",
-    tools: "Python, NumPy",
-    techColor: "border-purple-500/60 shadow-purple-500/10",
-    techLabel: "Python",
-    deploymentLink: "https://github.com/sudarshanmg/ANN",
-  },
-  {
-    title: "Frogify",
-    desc: "Platform to upload, share and listen to music. Full-stack with auth, storage and streaming.",
-    tools: "NextJS, TypeScript, Supabase, NextAuth, PostgreSQL, TailwindCSS",
-    techColor: "border-yellow-500/60 shadow-yellow-500/10",
-    techLabel: "TypeScript",
-    deploymentLink: "https://frogify.vercel.app",
-    githubLink: "https://github.com/sudarshanmg/frogify",
+    title: "Offline PDF Editor",
+    desc: "Cross-platform desktop PDF editor with tiled OpenGL rendering, a per-thread rendering context for concurrency, and a non-destructive annotation model.",
+    tools: "C++, Qt6, MuPDF, OpenGL",
+    tech: "C++",
+    accent: "red",
+    badge: "BUILDING",
     tall: true,
   },
   {
-    title: "Discord Clone",
-    desc: "Full Discord clone with real-time messaging, video & audio chat via WebRTC.",
-    tools: "NextJS, TypeScript, NodeJS, WebRTC, socket.io, UploadThing",
-    techColor: "border-yellow-500/60 shadow-yellow-500/10",
-    techLabel: "TypeScript",
-    alert: true,
+    title: "gotask",
+    desc: "A complete task-manager backend in Go — JWT auth, filtering, sorting and pagination over a REST API. Idiomatic Go service design with stateless auth.",
+    tools: "Go, REST, JWT",
+    tech: "Go",
+    accent: "cyan",
+    githubLink: "https://github.com/sudarshanmg/gotask",
   },
   {
-    title: "FIS — Faculty Information System",
-    desc: "Custom application for the college to manage faculty data with role-based access control.",
-    tools: "NextJS, TypeScript, Supabase, PostgreSQL, UploadThing",
-    techColor: "border-yellow-500/60 shadow-yellow-500/10",
-    techLabel: "TypeScript",
-    githubLink: "https://github.com/sudarshanmg/faculty-system",
+    title: "FocusKitty",
+    desc: "An aesthetic Pomodoro / focus-timer web app with themeable modes. Designed, shipped and live.",
+    tools: "TypeScript, React, Next.js",
+    tech: "TypeScript",
+    accent: "yellow",
+    deploymentLink: "https://focuskitty.app",
   },
   {
-    title: "Pragyatha",
-    desc: "Site built for the college fest — event listings, registrations, real-time updates.",
-    tools: "NextJS, TypeScript, TailwindCSS, Appwrite",
-    techColor: "border-orange-500/60 shadow-orange-500/10",
-    techLabel: "NextJS",
-    deploymentLink: "https://pragyatha.vercel.app",
-    githubLink: "https://github.com/sudarshanmg/pragyatha",
+    title: "PDF Translation Platform",
+    desc: "Internal document-translation web app adopted org-wide — 7+ languages, JWT auth with role-based access, and normalized PostgreSQL schemas.",
+    tools: "Flask, PostgreSQL, JWT",
+    tech: "Python",
+    accent: "purple",
+    badge: "WORK",
     wide: true,
   },
   {
-    title: "Currency Converter",
-    desc: "Desktop app to convert currency rates, built with Electron for cross-platform distribution.",
-    tools: "ReactJS, ElectronJS, TailwindCSS, NodeJS",
-    techColor: "border-cyan-500/60 shadow-cyan-500/10",
-    techLabel: "Electron",
-    githubLink: "https://github.com/sudarshanmg/currency-converter",
+    title: "Huffman Compressor",
+    desc: "Lossless file compression & decompression from scratch using Huffman coding — binary tree construction and bit-level I/O.",
+    tools: "C++",
+    tech: "C++",
+    accent: "red",
+    githubLink: "https://github.com/sudarshanmg/huffman",
   },
   {
-    title: "Algorithm Visualiser",
-    desc: "Visual playground for algorithms — watch them run step-by-step in the browser.",
-    tools: "ReactJS",
-    techColor: "border-orange-500/60 shadow-orange-500/10",
-    techLabel: "React",
-    deploymentLink: "https://sudarshanmg.github.io/sudogorithm/",
-    githubLink: "https://github.com/sudarshanmg/sudogorithm",
+    title: "Neural Network from Scratch",
+    desc: "A feed-forward artificial neural network with backpropagation, implemented from first principles — no ML frameworks.",
+    tools: "Python, NumPy",
+    tech: "Python",
+    accent: "purple",
+    githubLink: "https://github.com/sudarshanmg/ANN",
   },
 ];
 
-const techBadgeColor: Record<string, string> = {
-  "C++": "bg-red-500/15 text-red-400 border-red-500/30",
-  Python: "bg-purple-500/15 text-purple-400 border-purple-500/30",
-  TypeScript: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30",
-  NextJS: "bg-orange-500/15 text-orange-400 border-orange-500/30",
-  Electron: "bg-cyan-500/15 text-cyan-400 border-cyan-500/30",
-  React: "bg-orange-500/15 text-orange-400 border-orange-500/30",
+const accentMap: Record<string, { border: string; shadow: string; badge: string; text: string }> = {
+  red:    { border: "border-red-500",    shadow: "hover:shadow-[6px_6px_0_0_#ef4444]", badge: "bg-red-500",    text: "text-red-400" },
+  cyan:   { border: "border-cyan-400",   shadow: "hover:shadow-[6px_6px_0_0_#22d3ee]", badge: "bg-cyan-400",   text: "text-cyan-300" },
+  yellow: { border: "border-yellow-400", shadow: "hover:shadow-[6px_6px_0_0_#facc15]", badge: "bg-yellow-400", text: "text-yellow-300" },
+  purple: { border: "border-purple-500", shadow: "hover:shadow-[6px_6px_0_0_#a855f7]", badge: "bg-purple-500", text: "text-purple-300" },
+  orange: { border: "border-orange-500", shadow: "hover:shadow-[6px_6px_0_0_#f97316]", badge: "bg-orange-500", text: "text-orange-300" },
 };
 
 function ProjectCard({ project }: { project: Project }) {
-  const badgeClass = techBadgeColor[project.techLabel] ?? "bg-neutral-500/15 text-neutral-400 border-neutral-500/30";
+  const a = accentMap[project.accent] ?? accentMap.orange;
 
   return (
     <div
       className={`
-        group relative flex flex-col bg-[#0f0f0f] rounded-2xl border p-6
-        ${project.techColor}
-        shadow-lg card-hover
+        group relative flex flex-col bg-[#0f0f0f] border-2 ${a.border} ${a.shadow}
+        p-6 transition-all duration-150 hover:-translate-x-1 hover:-translate-y-1
         ${project.tall ? "row-span-2" : ""}
         ${project.wide ? "md:col-span-2" : ""}
       `}
     >
-      {/* Tech badge */}
-      <span className={`self-start text-xs font-mono px-2 py-0.5 rounded-full border mb-4 ${badgeClass}`}>
-        {project.techLabel}
-      </span>
+      {/* Top row: tech + badge */}
+      <div className="flex items-center justify-between mb-4 gap-2">
+        <span className={`text-xs font-mono font-bold px-2 py-0.5 text-black ${a.badge}`}>
+          {project.tech}
+        </span>
+        {project.badge && (
+          <span className="flex items-center gap-1 text-[10px] font-mono font-bold uppercase tracking-widest text-neutral-500">
+            <Cpu size={11} /> {project.badge}
+          </span>
+        )}
+      </div>
 
-      <h2 className="text-lg font-bold text-white leading-tight mb-2 group-hover:text-orange-400 transition-colors duration-200">
+      <h2 className="font-acorn text-2xl md:text-3xl text-white leading-none mb-3 transition-colors">
         {project.title}
       </h2>
 
-      <p className="text-sm text-neutral-500 leading-relaxed flex-1 mb-4">
+      <p className="text-sm text-neutral-400 leading-relaxed flex-1 mb-4">
         {project.desc}
       </p>
 
-      {/* Tools */}
-      <p className="text-xs font-mono text-neutral-600 mb-4 line-clamp-1">
-        {project.tools}
-      </p>
+      <p className="text-xs font-mono text-neutral-600 mb-4">{project.tools}</p>
 
-      {/* Links / status */}
-      <div className="flex items-center gap-3 mt-auto">
-        {project.alert ? (
-          <span className="flex items-center gap-1 text-xs text-yellow-500/80 font-mono">
-            <AlertTriangle size={12} />
-            Preview coming soon
-          </span>
-        ) : (
-          <>
-            {project.deploymentLink && (
-              <Link
-                href={project.deploymentLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs font-mono text-orange-400 hover:text-orange-300 transition-colors"
-              >
-                <ExternalLink size={12} />
-                Demo
-              </Link>
-            )}
-            {project.githubLink && (
-              <Link
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-xs font-mono text-neutral-400 hover:text-white transition-colors"
-              >
-                <Github size={12} />
-                Source
-              </Link>
-            )}
-          </>
+      <div className="flex items-center gap-4 mt-auto pt-3 border-t border-white/10">
+        {project.deploymentLink && (
+          <Link
+            href={project.deploymentLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center gap-1 text-xs font-mono font-bold ${a.text} hover:underline`}
+          >
+            <ExternalLink size={13} /> LIVE
+          </Link>
+        )}
+        {project.githubLink && (
+          <Link
+            href={project.githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-xs font-mono font-bold text-neutral-400 hover:text-white hover:underline"
+          >
+            <Github size={13} /> SOURCE
+          </Link>
+        )}
+        {!project.deploymentLink && !project.githubLink && (
+          <span className="text-xs font-mono text-neutral-600 italic">internal / proprietary</span>
         )}
       </div>
     </div>
@@ -170,14 +152,18 @@ export default function ProjectsPage() {
   return (
     <main className="max-w-5xl mx-auto px-4 py-12">
       <div className="mb-12">
-        <p className="text-xs font-mono text-orange-400 tracking-widest uppercase mb-3">// work</p>
-        <h1 className="font-acorn text-5xl md:text-7xl text-white leading-none">Projects</h1>
-        <p className="mt-4 text-neutral-500 font-mono text-sm max-w-md">
-          Things I built — systems software, full-stack apps, and everything in between.
+        <span className="inline-block bg-yellow-400 text-black font-mono font-bold text-xs tracking-widest uppercase px-3 py-1.5 border-2 border-black brutal-shadow-sm -rotate-2 mb-5">
+          // selected work
+        </span>
+        <h1 className="font-acorn text-6xl md:text-8xl text-white leading-[0.85] noise-text">
+          Projects
+        </h1>
+        <p className="mt-5 text-neutral-400 font-mono text-sm max-w-lg">
+          Systems software, embedded UI frameworks, full-stack platforms — things that ship and things I build for the love of it.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
         {projects.map((project, i) => (
           <ProjectCard key={i} project={project} />
         ))}

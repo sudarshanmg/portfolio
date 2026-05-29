@@ -1,41 +1,40 @@
 import React, { ReactNode } from "react";
 
 interface GridItemProps {
-	children: ReactNode;
+  children: ReactNode;
 }
 
 const GridItem: React.FC<GridItemProps> = ({ children }) => {
-	const randomSize = Math.random() < 0.5 ? "large" : "small";
-	const randomColor = getRandomColor();
-	const rotationAngle = getRandomRotationAngle();
+  const randomColor = getRandomColor();
+  const rotationAngle = getRandomRotationAngle();
 
-	return (
-		<div
-			className={`${randomColor} p-4 rounded shadow-lg`}
-			style={{ transform: `rotate(${rotationAngle}deg)` }}
-		>
-			<div className="text-sm md:text-base lg:text-lg xl:text-xl overflow-hidden">
-				{children}
-			</div>
-		</div>
-	);
+  return (
+    <div
+      className={`${randomColor} p-4 border-2 border-black brutal-shadow-sm hover:-translate-y-1 transition-transform duration-150`}
+      style={{ transform: `rotate(${rotationAngle}deg)` }}
+    >
+      <div className="text-sm md:text-base max-h-48 overflow-y-auto break-words">
+        {children}
+      </div>
+    </div>
+  );
 };
 
 function getRandomColor() {
-	const colorClasses = [
-		"bg-yellow-300",
-		"bg-blue-300",
-		"bg-green-300",
-		"bg-pink-300",
-		"bg-purple-300",
-		"bg-orange-300",
-	];
-	const randomIndex = Math.floor(Math.random() * colorClasses.length);
-	return colorClasses[randomIndex];
+  const colorClasses = [
+    "bg-yellow-300",
+    "bg-cyan-300",
+    "bg-lime-300",
+    "bg-pink-300",
+    "bg-purple-300",
+    "bg-orange-300",
+  ];
+  const randomIndex = Math.floor(Math.random() * colorClasses.length);
+  return colorClasses[randomIndex];
 }
 
 function getRandomRotationAngle() {
-	return Math.floor(Math.random() * 21) - 10; // Random angle between -10 and 10 degrees
+  return Math.floor(Math.random() * 13) - 6; // -6 to 6 degrees
 }
 
 export default GridItem;
