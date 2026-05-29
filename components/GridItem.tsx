@@ -10,11 +10,11 @@ const GridItem: React.FC<GridItemProps> = ({ children }) => {
 
   return (
     <div
-      className={`${randomColor} p-4 border-2 border-black brutal-shadow-sm hover:-translate-y-1 transition-transform duration-150 overflow-visible`}
+      className={`${randomColor} p-4 border-2 border-black brutal-shadow-sm hover:-translate-y-1 transition-transform duration-150`}
       style={{ transform: `rotate(${rotationAngle}deg)` }}
     >
-      {/* Text is allowed to overflow — brutalist bleed effect */}
-      <div className="text-sm md:text-base break-words">
+      {/* Text stays inside the card; long notes scroll rather than grow forever */}
+      <div className="text-sm md:text-base break-words max-h-40 overflow-y-auto">
         {children}
       </div>
     </div>

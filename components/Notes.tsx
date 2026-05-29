@@ -35,9 +35,9 @@ const Notes = () => {
       loading...
     </header>
   ) : (
-    <div className="w-full h-full flex flex-col items-center my-8 overflow-x-clip">
+    <div className="w-full h-full flex flex-col items-center my-8 px-2">
       {posts && (
-        <div className="w-full h-full">
+        <div className="w-full h-full overflow-visible">
           <GridContainer>
             {posts.map((post, index) => (
               <GridItem key={index}>
